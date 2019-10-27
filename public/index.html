@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>exchange</title>
+</head>
+
+<body>
+
+    <div>your currancy is:</div>
+    <select name="currancy" onchange=currancy(event)>
+        <option value="">choose your currancy</option>
+        <option value="EUR">EUR</option>
+        <option value="ILS">ILS</option>
+        <option value="USD">USD</option>
+        <option value="GBP">GBP</option>
+    </select>
+
+    <div>insert amount</div>
+  
+        <input id="amount" type=number name="cash" placeholder="here" onchange=exchange(event)>
+
+
+
+
+    <div class="result" id="eur"></div>
+    <div class="result" id="ils"></div>
+    <div class="result" id="usd"></div>
+    <div class="result" id="gbp"></div>
+
+
+</body>
+
+<script>
+    let change = '';
+    function currancy(e) {
+        // console.log(e.target.children[0].value);
+        change = e.target.value;
+        console.log(change);
+    }
+    function exchange(e) {
+        // e.preventDefault();
+        // document.getElementById("amount").reset();
+        
+        console.dir(e);
+        if (change == 'EUR') {
+            console.dir(e);
+            console.log(e.target.value);
+            let moneyToChange = { money: e.target.value }
+            console.log(moneyToChange);
+            fetch('/eurChange', {
+                method: 'POST',
+                body: JSON.stringify(moneyToChange),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .then(json => {
+                    console.log(json);
+                    document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
+                    document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
+                    document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
+                    document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
+
+                });
+
+        } else {
+
+            if (change == 'ILS') {
+                let moneyToChange = { money: e.target.value }
+                fetch('/ilsChange', {
+                    method: 'POST',
+                    body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => res.json())
+                    .then(json => {
+                        console.log(json);
+                        document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
+                        document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
+                        document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
+                        document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
+
+                    });
+
+            } else {
+                if (change == 'USD') {
+                    let moneyToChange = { money: e.target.value }
+                    fetch('/usdChange', {
+                        method: 'POST',
+                        body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(res => res.json())
+                        .then(json => {
+                            console.log(json);
+                            document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
+                            document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
+                            document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
+                            document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
+
+                        });
+
+                } else {
+                    if (change == 'GBP') {
+                        let moneyToChange = { money: e.target.value }
+                        fetch('/gbpChange', {
+                            method: 'POST',
+                            body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(res => res.json())
+                            .then(json => {
+                                console.log(json);
+                                document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
+                                document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
+                                document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
+                                document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
+
+                            });
+
+                    }
+                    else {
+                        console.log('try again');
+                    }
+                }
+            }
+        }
+        e.target.value = ""
+    }
+</script>
+
+</html>

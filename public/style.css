@@ -1,0 +1,35 @@
+body {
+           margin: auto;
+width: 360px;
+background: rgb(123, 165, 57);
+
+}
+
+
+.result{
+    background: blue;
+    width: 156px;
+    height: 35px;
+    border: 2px solid yellow;
+    text-align: center;
+    padding-top: 15px;
+    font-size: 18px;
+    font-weight: 1000;
+    
+}
+#ils{
+    background-image: url("il.png");
+    background-size: contain;
+}
+#eur{
+    background-image: url("eu.png");
+    background-size: contain;
+}
+#usd{
+    background-image: url("us.png");
+    background-size: contain;
+}
+#gbp{
+    background-image: url("gb.png");
+    background-size: contain;
+}
