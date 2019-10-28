@@ -22,15 +22,8 @@ app.post('/eurChange', (req, res) => {
         .then(json => {
 
             console.log(` ${(moneyToChange.money) * (json.rates.ILS)}`)
-            let newRate = {
-                ILS: ((moneyToChange.money) * (json.rates.ILS)).toFixed(2),
-                EUR: ((moneyToChange.money) * (json.rates.EUR)).toFixed(2),
-                USD: ((moneyToChange.money) * (json.rates.USD)).toFixed(2),
-                GBP: ((moneyToChange.money) * (json.rates.GBP)).toFixed(2),
-            };
-            console.log(newRate);
-
-            res.send({ newRate });
+           
+            res.send({ json });
 
         });
 
@@ -61,72 +54,6 @@ app.post('/eurChange', (req, res) => {
 
 
 })
-app.post('/ilsChange', (req, res) => {
-    let = moneyToChangeILS = req.body;
-
-    fetch(url)
-        .then(res => res.json())
-        .then(json => {
-
-            let newRate = {
-                ILS: ((moneyToChangeILS.money)),
-                EUR: ((moneyToChangeILS.money) *((json.rates.EUR) /(json.rates.ILS))).toFixed(2),
-                USD: (((moneyToChangeILS.money) * (json.rates.USD))/(json.rates.ILS)).toFixed(2),
-                GBP: (((moneyToChangeILS.money) * (json.rates.GBP))/(json.rates.ILS)).toFixed(2),
-            };
-            console.log(newRate);
-
-            res.send({ newRate });
-
-        });
-
-
-})
-app.post('/usdChange', (req, res) => {
-    let = moneyToChange = req.body;
-
-    fetch(url)
-        .then(res => res.json())
-        .then(json => {
-
-            let newRate = {
-                ILS: ((moneyToChange.money)*((json.rates.ILS) /(json.rates.USD))).toFixed(2),
-                EUR: ((moneyToChange.money) *((json.rates.EUR) /(json.rates.USD))).toFixed(2),
-                USD: (moneyToChange.money),
-                GBP: (((moneyToChange.money) * (json.rates.GBP))/(json.rates.USD)).toFixed(2),
-            };
-            console.log(newRate);
-
-            res.send({ newRate });
-
-        });
-
-
-})
-app.post('/gbpChange', (req, res) => {
-    let = moneyToChange = req.body;
-
-    fetch(url)
-        .then(res => res.json())
-        .then(json => {
-
-            let newRate = {
-                ILS: ((moneyToChange.money)*((json.rates.ILS) /(json.rates.GBP))).toFixed(2),
-                EUR: ((moneyToChange.money) *((json.rates.EUR) /(json.rates.GBP))).toFixed(2),
-                USD: ((moneyToChange.money) *((json.rates.USD) /(json.rates.GBP))).toFixed(2),
-                GBP: (moneyToChange.money)
-            };
-            console.log(newRate);
-
-            res.send({ newRate });
-
-        });
-
-
-})
-
-
-
 
 
 

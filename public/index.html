@@ -12,130 +12,68 @@
 
 <body>
 
-    <div>your currancy is:</div>
-    <select name="currancy" onchange=currancy(event)>
-        <option value="">choose your currancy</option>
-        <option value="EUR">EUR</option>
-        <option value="ILS">ILS</option>
-        <option value="USD">USD</option>
-        <option value="GBP">GBP</option>
-    </select>
+ 
 
-    <div>insert amount</div>
-  
-        <input id="amount" type=number name="cash" placeholder="here" onchange=exchange(event)>
+    <form method="get" onsubmit="exchange(event)" id="myForm">
+        <div>your currency is (3 capital letters):</div>
+        <input type="text" name="yourMoney" placeholder="here">
+        <div>exchange to</div>
+        <input type="text" name="otherMoney" placeholder="here">
+        <div>amount: </div>
+        <input id="amount" type=number name="cash" placeholder="here">
+        <input type="submit" value="calculate">
 
+    </form>
 
 
 
     <div class="result" id="eur"></div>
-    <div class="result" id="ils"></div>
-    <div class="result" id="usd"></div>
-    <div class="result" id="gbp"></div>
 
 
 </body>
 
 <script>
-    let change = '';
-    function currancy(e) {
-        // console.log(e.target.children[0].value);
-        change = e.target.value;
-        console.log(change);
-    }
+
     function exchange(e) {
-        // e.preventDefault();
+        e.preventDefault();
         // document.getElementById("amount").reset();
-        
+
         console.dir(e);
-        if (change == 'EUR') {
-            console.dir(e);
-            console.log(e.target.value);
-            let moneyToChange = { money: e.target.value }
-            console.log(moneyToChange);
-            fetch('/eurChange', {
-                method: 'POST',
-                body: JSON.stringify(moneyToChange),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => res.json())
-                .then(json => {
-                    console.log(json);
-                    document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
-                    document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
-                    document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
-                    document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
+    
+        console.log(e.target.yourMoney.value);
+        console.log(e.target.otherMoney.value);
+        console.log(e.target.cash.value);
+        let yourMoney = e.target.yourMoney.value;
+        let otherMoney = e.target.otherMoney.value;
+        let moneyToChange = e.target.cash.value;
 
-                });
 
-        } else {
-
-            if (change == 'ILS') {
-                let moneyToChange = { money: e.target.value }
-                fetch('/ilsChange', {
-                    method: 'POST',
-                    body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                }).then(res => res.json())
-                    .then(json => {
-                        console.log(json);
-                        document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
-                        document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
-                        document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
-                        document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
-
-                    });
-
-            } else {
-                if (change == 'USD') {
-                    let moneyToChange = { money: e.target.value }
-                    fetch('/usdChange', {
-                        method: 'POST',
-                        body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }).then(res => res.json())
-                        .then(json => {
-                            console.log(json);
-                            document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
-                            document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
-                            document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
-                            document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
-
-                        });
-
-                } else {
-                    if (change == 'GBP') {
-                        let moneyToChange = { money: e.target.value }
-                        fetch('/gbpChange', {
-                            method: 'POST',
-                            body: JSON.stringify(moneyToChange), // data can be `string` or {object}!
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(res => res.json())
-                            .then(json => {
-                                console.log(json);
-                                document.getElementById('eur').innerHTML = ` ${moneyToChange.money} is ${json.newRate.EUR} <i class="fa fa-euro"></i>`;
-                                document.getElementById('ils').innerHTML = ` ${moneyToChange.money} is ${json.newRate.ILS}  <i class="fa fa-shekel"></i>`;
-                                document.getElementById('usd').innerHTML = ` ${moneyToChange.money} is ${json.newRate.USD} <i class="fa fa-usd"></i>`;
-                                document.getElementById('gbp').innerHTML = ` ${moneyToChange.money} is ${json.newRate.GBP} <i class="fa fa-gbp"></i>`;
-
-                            });
-
-                    }
-                    else {
-                        console.log('try again');
-                    }
-                }
+        fetch('/eurChange', {
+            method: 'POST',
+    
+            body: JSON.stringify(),
+            headers: {
+                'Content-Type': 'application/json'
             }
-        }
-        e.target.value = ""
+        }).then(res => res.json())
+            .then(json => {
+                console.log(json);
+           
+
+                console.log(yourMoney)
+                let rate = json.json.rates;
+                console.log(rate[yourMoney]);
+                let = toChange = rate[yourMoney];
+                let changeTo = rate[otherMoney];
+                let newValue = ((moneyToChange*changeTo)/toChange).toFixed(2) ;
+                console.log(`${newValue}`);
+                // let found = rate.yourMoney;
+                document.getElementById('eur').innerHTML = ` ${moneyToChange} ${yourMoney} is ${newValue} ${otherMoney}`;
+                // console.log(found);
+            });
+
     }
+   
 </script>
 
 </html>
