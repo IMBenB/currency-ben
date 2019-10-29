@@ -16,9 +16,9 @@
 
     <form method="get" onsubmit="exchange(event)" id="myForm">
         <div>your currency is (3 capital letters):</div>
-        <input type="text" name="yourMoney" placeholder="here">
+        <input oninput="this.value = this.value.toUpperCase()" class = "letters" type="text" name="yourMoney" placeholder="here">
         <div>exchange to</div>
-        <input type="text" name="otherMoney" placeholder="here">
+        <input oninput="this.value = this.value.toUpperCase()" class = "letters" type="text" name="otherMoney" placeholder="here">
         <div>amount: </div>
         <input id="amount" type=number name="cash" placeholder="here">
         <input type="submit" value="calculate">
