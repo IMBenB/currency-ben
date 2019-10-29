@@ -9,12 +9,13 @@ background: rgb(123, 165, 57);
 .result{
     background: blue;
     width: 156px;
-    height: 35px;
+    min-height: 35px;
     border: 2px solid yellow;
     text-align: center;
     padding-top: 15px;
     font-size: 18px;
     font-weight: 1000;
+    color: white;
     
 }
 /* #ils{
