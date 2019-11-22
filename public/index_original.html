@@ -12,28 +12,13 @@
 
 <body>
 
-
+ 
 
     <form method="get" onsubmit="exchange(event)" id="myForm">
         <div>your currency is:</div>
-        <select name="yourMoney" id="yourMoney">
-            <option value="">your currency</option>
-            <option value="">ILS</option>
-            <option value="">USD</option>
-            <option value="">EUR</option>
-            <option value="" disabled="disabled">-------</option>
-        </select>
+        <input oninput="this.value = this.value.toUpperCase()" class = "letters" type="text" name="yourMoney" placeholder="here">
         <div>exchange to</div>
-        <select name="otherMoney" id="otherMoney">
-            <option value="">change to currency</option>
-            <option value="">ILS</option>
-            <option value="">USD</option>
-            <option value="">EUR</option>
-            <option value="" disabled="disabled">-------</option>
-
-        </select>
-        <!-- <input oninput="this.value = this.value.toUpperCase()" class="letters" type="text" name="otherMoney"
-            placeholder="here"> -->
+        <input oninput="this.value = this.value.toUpperCase()" class = "letters" type="text" name="otherMoney" placeholder="here">
         <div>amount: </div>
         <input id="amount" type=number name="cash" placeholder="here">
         <input type="submit" value="calculate">
@@ -48,26 +33,13 @@
 </body>
 
 <script>
-    fetch('/getCurrency')
-        .then(res => res.json())
-        .then(json => {
-            let list = Object.getOwnPropertyNames(json);
-            for (let i in list) {
-                let selectFrom = document.getElementById('yourMoney');
-                let selectTo = document.getElementById('otherMoney');
-                selectFrom.innerHTML += `<option>${list[i]}</option>`
-                selectTo.innerHTML += `<option>${list[i]}</option>`
-            }
-            console.log(json);
-        })
-
 
     function exchange(e) {
         e.preventDefault();
         // document.getElementById("amount").reset();
 
         console.dir(e);
-
+    
         console.log(e.target.yourMoney.value);
         console.log(e.target.otherMoney.value);
         console.log(e.target.cash.value);
@@ -78,7 +50,7 @@
 
         fetch('/eurChange', {
             method: 'POST',
-
+    
             body: JSON.stringify(),
             headers: {
                 'Content-Type': 'application/json'
@@ -86,14 +58,14 @@
         }).then(res => res.json())
             .then(json => {
                 console.log(json);
-
+           
 
                 console.log(yourMoney)
                 let rate = json.json.rates;
                 console.log(rate[yourMoney]);
                 let = toChange = rate[yourMoney];
                 let changeTo = rate[otherMoney];
-                let newValue = ((moneyToChange * changeTo) / toChange).toFixed(2);
+                let newValue = ((moneyToChange*changeTo)/toChange).toFixed(2) ;
                 console.log(`${newValue}`);
                 // let found = rate.yourMoney;
                 document.getElementById('eur').innerHTML = ` ${moneyToChange} ${yourMoney} is ${newValue} ${otherMoney}`;
@@ -101,7 +73,7 @@
             });
 
     }
-
+   
 </script>
 
 </html>

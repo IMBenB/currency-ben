@@ -10,11 +10,6 @@ app.use(bodyParser.json());
 
 const url = ' http://data.fixer.io/api/latest?access_key=3a6bfc4cee20e19bca58d79385271674';
 
-app.get('/getCurrency', (req, res) => {
-    fetch(url)
-        .then(resp => resp.json())
-        .then(resAfter => res.send(resAfter.rates));
-})
 
 app.post('/eurChange', (req, res) => {
 
@@ -27,7 +22,7 @@ app.post('/eurChange', (req, res) => {
         .then(json => {
 
             console.log(` ${(moneyToChange.money) * (json.rates.ILS)}`)
-
+           
             res.send({ json });
 
         });
