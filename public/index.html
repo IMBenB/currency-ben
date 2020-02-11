@@ -7,44 +7,81 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>exchange</title>
 </head>
 
-<body>
+<body class= "bg-primary mx-auto" style="width: 400px;">
 
 
 
     <form method="get" onsubmit="exchange(event)" id="myForm">
-        <div>your currency is:</div>
-        <select name="yourMoney" id="yourMoney">
-            <option value="">your currency</option>
-            <option value="ILS">ILS</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="" disabled="disabled">-------</option>
-        </select>
-        <div>exchange to</div>
-        <select name="otherMoney" id="otherMoney">
-            <option value="">change to currency</option>
-            <option value="ILS">ILS</option>
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="" disabled="disabled">-------</option>
+        <div class="container mb-5 mt-5">
+            <div class="row">
+                <div class="col-6 col-xs">
+                    <div>your currency is:</div>
+                    <select name="yourMoney" id="yourMoney" class="form-control" id="exampleFormControlSelect1">
+                        <option value="">your currency</option>
+                        <option value="ILS">ILS</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="" disabled="disabled">-------</option>
+                    </select>
+                </div>
+                <div class="col-6 col-xs">
+                    <div>exchange to</div>
+                    <select name="otherMoney" id="otherMoney" class="form-control" id="exampleFormControlSelect1">
+                        <option value="">change to </option>
+                        <option value="ILS">ILS</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="" disabled="disabled">-------</option>
 
-        </select>
+                    </select>
+                </div>
+
+            </div>
+        </div>
         <!-- <input oninput="this.value = this.value.toUpperCase()" class="letters" type="text" name="otherMoney"
             placeholder="here"> -->
-        <div>amount: </div>
-        <input id="amount" type=number name="cash" placeholder="here">
-        <input type="submit" value="calculate">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-xs">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+                        </div>
+                        <input type=number name="cash" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <!-- <div>Amount to convert: </div>
+                    <input id="amount" type=number name="cash" placeholder="here"> -->
+                </div>
+                <div class="col-6 col-xs">
+
+                    <div id="eur" class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">New Value</span>
+                        </div>
+                        <!-- <input  type=number name="cash" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default"> -->
+                    </div>
+                    <!-- <div>New value: </div>
+                    <div class="result" id="eur"></div> -->
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <input type="submit" value="calculate" class="btn btn-secondary">
+        </div>
+
 
     </form>
+    <div style="width:100%;height:0;padding-bottom:120%;position:relative;"><iframe src="https://giphy.com/embed/xTiTnqUxyWbsAXq7Ju" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/yosub-money-donald-duck-cash-xTiTnqUxyWbsAXq7Ju">via GIPHY</a></p>
 
-
-
-    <div class="result" id="eur"></div>
 
 
 </body>
@@ -105,5 +142,14 @@
     }
 
 </script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
 </html>
